@@ -58,7 +58,7 @@ def processar_csv_para_sqlite(arquivo_csv, banco_dados, tabela):
     """Lê o CSV e salva os dados no banco de dados SQLite."""
     print(f"Processando {arquivo_csv} e salvando na tabela '{tabela}' no banco {banco_dados}...")  # Imprime informações sobre o processo
     df = pd.read_csv(arquivo_csv, sep=";", encoding="latin1")  # Lê o arquivo CSV usando pandas com o separador ';' e codificação 'latin1'
-
+    df.insert(0, "id", range(1, len(df) + 1)) # Adiciona a coluna 'id' começando de 1
     with sqlite3.connect(banco_dados) as conn:  # Estabelece uma conexão com o banco de dados SQLite
         df.to_sql(tabela, conn, if_exists="replace", index=False)  # Salva o DataFrame como uma tabela no banco de dados, substituindo a tabela se ela já existir
 

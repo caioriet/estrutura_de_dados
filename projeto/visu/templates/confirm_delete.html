@@ -1,0 +1,9 @@
+<h1>Confirmar Exclusão</h1>
+
+<p>Tem certeza que deseja excluir este(a) {{ model_name|capfirst }}: "{{ instance }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, Excluir</button>
+    <a href="{% url 'detail' model_name=model_name pk=instance.pk %}">Cancelar</a>
+</form>

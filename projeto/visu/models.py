@@ -2,7 +2,8 @@ from django.db import models
 
 # Create your models here.
 class companhias_abertas(models.Model):
-    ROWID = models.IntegerField(primary_key=True)  # Se for uma chave primária única
+    id = models.IntegerField(primary_key=True)
+    ROWID = models.IntegerField()  # Se for uma chave primária única
     CNPJ_CIA = models.CharField(max_length=14)
     DENOM_SOCIAL = models.CharField(max_length=255)
     DENOM_COMERC = models.CharField(max_length=255)
@@ -51,9 +52,69 @@ class companhias_abertas(models.Model):
     CNPJ_AUDITOR = models.CharField(max_length=14)
     AUDITOR = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.nome
-    
     class Meta:
         db_table = 'companhias_abertas'
 
+    def __str__(self):
+        return self.nome
+
+class declaracao_genero_2024(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cnpj_companhia = models.TextField(db_column='CNPJ_Companhia', blank=True, null=True)  # Field name made lowercase.
+    data_referencia = models.TextField(db_column='Data_Referencia', blank=True, null=True)  # Field name made lowercase.
+    versao = models.IntegerField(db_column='Versao', blank=True, null=True)  # Field name made lowercase.
+    id_documento = models.IntegerField(db_column='ID_Documento', blank=True, null=True)  # Field name made lowercase.
+    nome_companhia = models.TextField(db_column='Nome_Companhia', blank=True, null=True)  # Field name made lowercase.
+    local = models.TextField(db_column='Local', blank=True, null=True)  # Field name made lowercase.
+    quantidade_feminino = models.IntegerField(db_column='Quantidade_Feminino', blank=True, null=True)  # Field name made lowercase.
+    quantidade_masculino = models.IntegerField(db_column='Quantidade_Masculino', blank=True, null=True)  # Field name made lowercase.
+    quantidade_nao_binario = models.IntegerField(db_column='Quantidade_Nao_Binario', blank=True, null=True)  # Field name made lowercase.
+    quantidade_outros = models.IntegerField(db_column='Quantidade_Outros', blank=True, null=True)  # Field name made lowercase.
+    quantidade_sem_resposta = models.IntegerField(db_column='Quantidade_Sem_Resposta', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'declaracao_genero_2024'
+
+    def __str__(self):
+        return self.nome
+
+class declaracao_raca_2024(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cnpj_companhia = models.TextField(db_column='CNPJ_Companhia', blank=True, null=True)  # Field name made lowercase.
+    data_referencia = models.TextField(db_column='Data_Referencia', blank=True, null=True)  # Field name made lowercase.
+    versao = models.IntegerField(db_column='Versao', blank=True, null=True)  # Field name made lowercase.
+    id_documento = models.IntegerField(db_column='ID_Documento', blank=True, null=True)  # Field name made lowercase.
+    nome_companhia = models.TextField(db_column='Nome_Companhia', blank=True, null=True)  # Field name made lowercase.
+    local = models.TextField(db_column='Local', blank=True, null=True)  # Field name made lowercase.
+    quantidade_amarelo = models.IntegerField(db_column='Quantidade_Amarelo', blank=True, null=True)  # Field name made lowercase.
+    quantidade_branco = models.IntegerField(db_column='Quantidade_Branco', blank=True, null=True)  # Field name made lowercase.
+    quantidade_preto = models.IntegerField(db_column='Quantidade_Preto', blank=True, null=True)  # Field name made lowercase.
+    quantidade_pardo = models.IntegerField(db_column='Quantidade_Pardo', blank=True, null=True)  # Field name made lowercase.
+    quantidade_indigena = models.IntegerField(db_column='Quantidade_Indigena', blank=True, null=True)  # Field name made lowercase.
+    quantidade_outros = models.IntegerField(db_column='Quantidade_Outros', blank=True, null=True)  # Field name made lowercase.
+    quantidade_sem_resposta = models.IntegerField(db_column='Quantidade_Sem_Resposta', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'declaracao_raca_2024'
+
+    def __str__(self):
+        return self.nome
+
+class faixa_etaria_2024(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cnpj_companhia = models.TextField(db_column='CNPJ_Companhia', blank=True, null=True)  # Field name made lowercase.
+    data_referencia = models.TextField(db_column='Data_Referencia', blank=True, null=True)  # Field name made lowercase.
+    versao = models.IntegerField(db_column='Versao', blank=True, null=True)  # Field name made lowercase.
+    id_documento = models.IntegerField(db_column='ID_Documento', blank=True, null=True)  # Field name made lowercase.
+    nome_companhia = models.TextField(db_column='Nome_Companhia', blank=True, null=True)  # Field name made lowercase.
+    local = models.TextField(db_column='Local', blank=True, null=True)  # Field name made lowercase.
+    quantidade_ate30anos = models.IntegerField(db_column='Quantidade_Ate30Anos', blank=True, null=True)  # Field name made lowercase.
+    quantidade_30a50anos = models.IntegerField(db_column='Quantidade_30a50Anos', blank=True, null=True)  # Field name made lowercase.
+    quantidade_acima50anos = models.IntegerField(db_column='Quantidade_Acima50Anos', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'faixa_etaria_2024'
+
+    def __str__(self):
+        return self.nome

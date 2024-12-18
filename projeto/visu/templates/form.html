@@ -1,0 +1,9 @@
+<h1>{% if form.instance.pk %}Editar{% else %}Adicionar{% endif %} {{ model_name|capfirst }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="{% url 'list' model_name=model_name %}">Voltar para a Lista</a>

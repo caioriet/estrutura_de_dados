@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Escolha uma tabela</title>
+</head>
+<body>
+    <h1>Escolha uma tabela para visualizar:</h1>
+    <ul>
+        {% for table_key, table_title in tables.items %}
+        <li>
+            <a href="{% url 'visu' %}?table={{ table_key }}">{{ table_title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
