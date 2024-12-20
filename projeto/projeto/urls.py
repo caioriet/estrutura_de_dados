@@ -20,10 +20,8 @@ from visu import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('index2/', views.index2, name='index2'),
-    path('admin/', admin.site.urls),
-    path('visu/', views.visu, name = 'visu'),    
-    path('<str:model_name>/', views.list_view, name='list2'),
+    path('admin/', admin.site.urls),  
+    path('<str:model_name>/', views.list_view, name='list'),
     path('<str:model_name>/create/', views.create_view, name='create'),
     path('<str:model_name>/<int:pk>/', views.detail_view, name='detail'),
     path('<str:model_name>/<int:pk>/update/', views.update_view, name='update'),

@@ -7,18 +7,6 @@ from .tables import companhias_abertasTable, declaracao_genero_2024Table, declar
 from .models import companhias_abertas, declaracao_genero_2024, declaracao_raca_2024, faixa_etaria_2024  # Importe os modelos também
 
 def index(request):
-    """
-    Exibe a página inicial com opções para visualizar as tabelas.
-    """
-    tables = {
-        'companhias_abertas': 'Companhias Abertas',
-        'declaracao_genero_2024': 'Declaração de Gênero 2024',
-        'declaracao_raca_2024': 'Declaração de Raça 2024',
-        'faixa_etaria_2024': 'Faixa Etária 2024',
-    }
-    return render(request, 'index.html', {'tables': tables})
-
-def index2(request):
     tables = {
         'companhias_abertas': 'Companhias Abertas',
         'declaracao_genero_2024': 'Declaração de Gênero 2024',
@@ -31,31 +19,7 @@ def index2(request):
         'declaracao_raca_2024': 'Declaração de Raça 2024',
         'faixa_etaria_2024': 'Faixa Etária 2024',
     }
-    return render(request, 'index2.html', {'tables': tables, 'models': models})
-
-def visu(request):
-    """
-    Exibe a tabela selecionada pelo usuário.
-    """
-    table_name = request.GET.get('table', 'companhias_abertas')  # Pega o nome da tabela da URL, padrão é 'companhias_abertas'
-
-    if table_name == 'companhias_abertas':
-        queryset = companhias_abertas.objects.all()
-        table = companhias_abertasTable(queryset)
-    elif table_name == 'declaracao_genero_2024':
-        queryset = declaracao_genero_2024.objects.all()
-        table = declaracao_genero_2024Table(queryset)
-    elif table_name == 'declaracao_raca_2024':
-        queryset = declaracao_raca_2024.objects.all()
-        table = declaracao_raca_2024Table(queryset)
-    elif table_name == 'faixa_etaria_2024':
-        queryset = faixa_etaria_2024.objects.all()
-        table = faixa_etaria_2024Table(queryset)
-    else:
-        return HttpResponse("Tabela inválida")
-
-    RequestConfig(request).configure(table)
-    return render(request, 'tabela.html', {'table': table, 'table_name': table_name})
+    return render(request, 'index.html', {'tables': tables, 'models': models})
 
 def get_model_and_table(model_name):
     model_names = {
@@ -73,7 +37,7 @@ def list_view(request, model_name):
     queryset = model.objects.all()
     table = table_class(queryset)
     RequestConfig(request, paginate={'per_page': 100}).configure(table)
-    return render(request, 'list2.html', {'table': table, 'model_name': model_name})
+    return render(request, 'list.html', {'table': table, 'model_name': model_name})
 
 def create_view(request, model_name):
     model, _ = get_model_and_table(model_name)
@@ -82,7 +46,7 @@ def create_view(request, model_name):
         form = form_class(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('list2', model_name=model_name)
+            return redirect('list', model_name=model_name)
     else:
         form = form_class()
     return render(request, 'form.html', {'form': form, 'model_name': model_name})
@@ -101,7 +65,7 @@ def update_view(request, model_name, pk):
         form = form_class(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('list2', model_name=model_name)
+            return redirect('list', model_name=model_name)
     else:
         form = form_class(instance=instance)
     return render(request, 'form.html', {'form': form, 'model_name': model_name})
@@ -111,6 +75,6 @@ def delete_view(request, model_name, pk):
     instance = get_object_or_404(model, pk=pk)
     if request.method == 'POST':
         instance.delete()
-        return redirect('list2', model_name=model_name)
+        return redirect('list', model_name=model_name)
     return render(request, 'confirm_delete.html', {'instance': instance, 'model_name': model_name})
 
