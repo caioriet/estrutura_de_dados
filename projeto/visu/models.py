@@ -56,7 +56,7 @@ class companhias_abertas(models.Model):
         db_table = 'companhias_abertas'
 
     def __str__(self):
-        return self.nome
+        return self.CNPJ_CIA
 
 class declaracao_genero_2024(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -76,7 +76,7 @@ class declaracao_genero_2024(models.Model):
         db_table = 'declaracao_genero_2024'
 
     def __str__(self):
-        return self.nome
+        return self.cnpj_companhia
 
 class declaracao_raca_2024(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -98,7 +98,7 @@ class declaracao_raca_2024(models.Model):
         db_table = 'declaracao_raca_2024'
 
     def __str__(self):
-        return self.nome
+        return self.cnpj_companhia
 
 class faixa_etaria_2024(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -117,4 +117,4 @@ class faixa_etaria_2024(models.Model):
         db_table = 'faixa_etaria_2024'
 
     def __str__(self):
-        return self.nome
+        return self.cnpj_companhia

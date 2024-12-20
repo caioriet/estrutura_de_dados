@@ -72,8 +72,8 @@ def list_view(request, model_name):
     model, table_class = get_model_and_table(model_name)
     queryset = model.objects.all()
     table = table_class(queryset)
-    RequestConfig(request, paginate={'per_page': 10}).configure(table)
-    return render(request, 'list.html', {'table': table, 'model_name': model_name})
+    RequestConfig(request, paginate={'per_page': 100}).configure(table)
+    return render(request, 'list2.html', {'table': table, 'model_name': model_name})
 
 def create_view(request, model_name):
     model, _ = get_model_and_table(model_name)
@@ -82,7 +82,7 @@ def create_view(request, model_name):
         form = form_class(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('list', model_name=model_name)
+            return redirect('list2', model_name=model_name)
     else:
         form = form_class()
     return render(request, 'form.html', {'form': form, 'model_name': model_name})
@@ -101,7 +101,7 @@ def update_view(request, model_name, pk):
         form = form_class(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('list', model_name=model_name)
+            return redirect('list2', model_name=model_name)
     else:
         form = form_class(instance=instance)
     return render(request, 'form.html', {'form': form, 'model_name': model_name})
@@ -111,18 +111,6 @@ def delete_view(request, model_name, pk):
     instance = get_object_or_404(model, pk=pk)
     if request.method == 'POST':
         instance.delete()
-        return redirect('list', model_name=model_name)
+        return redirect('list2', model_name=model_name)
     return render(request, 'confirm_delete.html', {'instance': instance, 'model_name': model_name})
-
-""" def visu(request):
-    queryset = companhias_abertas.objects.all()
-    table = companhias_abertasTable(queryset)
-    RequestConfig(request).configure(table)  # Configura paginação e ordenação
-    return render(request, 'tabela.html', {'table': table}) """
-# Create your views here.
-
-#def visualizacao(request):
- #   companhias = companhias_abertas.objects.all()  
-  #  return render(request, 'companhias_abertas.html',{'companhias abertas': companhias})
-#HttpResponse('Ola mundo')
 
