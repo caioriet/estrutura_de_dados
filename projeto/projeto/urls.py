@@ -21,6 +21,7 @@ from visu import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),  
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('<str:model_name>/', views.list_view, name='list'),
     path('<str:model_name>/create/', views.create_view, name='create'),
     path('<str:model_name>/<int:pk>/', views.detail_view, name='detail'),

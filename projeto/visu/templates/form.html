@@ -1,9 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{% if form.instance.pk %}Editar{% else %}Adicionar{% endif %} {{ model_name|capfirst }}</h1>
+<a class="btn btn-primary mb-3" href="{% url 'list' model_name=model_name %}">Voltar para a Lista</a>
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Salvar</button>
+    <button class="btn btn-primary mb-3" type="submit">Salvar</button>
 </form>
 
-<a href="{% url 'list' model_name=model_name %}">Voltar para a Lista</a>
+
+{% endblock %}

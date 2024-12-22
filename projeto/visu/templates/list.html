@@ -5,12 +5,13 @@
 <div class="container mt-4">
     <h1>Lista de {{ model_name|capfirst }}</h1>
 
-    <a class="btn btn-primary mb-3" href="{% url 'create' model_name=model_name %}">Adicionar Novo(a) {{ model_name|capfirst }}</a>
+    <a class="btn btn-primary mb-3" href="{% url 'create' model_name=model_name %}">Adicionar registro {{ model_name|capfirst }}</a>
+    <a class="btn btn-primary mb-3" href="{% url 'index' %}">Voltar para o Menu</a>
 
     <div class="table-responsive">
         {% render_table table %}
     </div>
     
-    <a class="btn btn-secondary" href="{% url 'index' %}">Voltar para a escolha de tabelas</a>
+    
 </div>
 {% endblock %}

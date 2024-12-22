@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+    <h1>Dashboard de Funcionários</h1>
+    <a href="{% url 'index' %}" class="button">Voltar</a>
+
+    <div class="chart-section">
+        <h2>Distribuição por Gênero</h2>
+        <div id="genero-chart"></div>
+    </div>
+    
+    <div class="chart-section">
+        <h2>Distribuição por Raça</h2>
+        <div id="raca-chart"></div>
+    </div>
+    
+    <div class="chart-section">
+        <h2>Distribuição por Faixa Etária</h2>
+        <div id="faixa-etaria-chart"></div>
+    </div>
+
+    <script>
+        // Dados de Gênero
+        var generoData = [{
+            values: [{{ genero_data.Feminino }}, {{ genero_data.Masculino }}, {{ genero_data.Nao_Binario }}, {{ genero_data.Outros }}, {{ genero_data.Sem_Resposta }}],
+            labels: ['Feminino', 'Masculino', 'Não Binário', 'Outros', 'Sem Resposta'],
+            type: 'pie'
+        }];
+
+        var generoLayout = {
+        responsive: true
+        };
+
+        Plotly.newPlot('genero-chart', generoData, generoLayout); // Adiciona o objeto layout
+
+        // Dados de Raça
+        var racaData = [{
+            values: [{{ raca_data.Amarelo }}, {{ raca_data.Branco }}, {{ raca_data.Preto }}, {{ raca_data.Pardo }}, {{ raca_data.Indigena }}, {{ raca_data.Outros }}, {{ raca_data.Sem_Resposta }}],
+            labels: ['Amarelo', 'Branco', 'Preto', 'Pardo', 'Indígena', 'Outros', 'Sem Resposta'],
+            type: 'pie'
+        }];
+
+        var racaLayout = {
+        responsive: true
+        };
+
+        Plotly.newPlot('raca-chart', racaData, racaLayout); // Adiciona o objeto layout
+
+        // Dados de Faixa Etária
+        var faixaEtariaData = [{
+            values: [{{ faixa_etaria_data.Ate_30 }}, {{ faixa_etaria_data.Entre_30_50 }}, {{ faixa_etaria_data.Acima_50 }}],
+            labels: ['Até 30 anos', 'Entre 30 e 50 anos', 'Acima de 50 anos'],
+            type: 'pie'
+        }];
+
+        var faixaEtariaLayout = {
+        responsive: true
+        };
+
+        Plotly.newPlot('faixa-etaria-chart', faixaEtariaData, faixaEtariaLayout); // Adiciona o objeto layout
+
+    </script>
+</body>
+</html>

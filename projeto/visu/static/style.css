@@ -1,0 +1,56 @@
+body {
+    font-family: sans-serif;
+}
+
+.model-section {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.model-section h2 {
+    margin-top: 0;
+}
+
+.model-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.model-section ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.model-section ul li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.chart-section {
+    margin-bottom: 40px; /* Espaço entre as seções */
+    width: 100%; /* Ocupa a largura total disponível */
+    height: auto; /* Altura automática para manter a proporção */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+#genero-chart, #raca-chart, #faixa-etaria-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    background-color: #f2f2f2; /* Cor de fundo cinza claro */
+    border: 1px solid #ccc; /* Borda cinza claro */
+    padding: 5px 10px; /* Espaçamento interno */
+    text-decoration: none; /* Sem sublinhado */
+    color: #333; /* Cor do texto escura */
+    border-radius: 3px; /* Cantos arredondados (opcional) */
+    margin-right: 5px;
+}
+.button:hover{
+background-color: #e6e6e6;
+}

@@ -113,7 +113,6 @@ class faixa_etaria_2024(models.Model):
     quantidade_acima50anos = models.IntegerField(db_column='Quantidade_Acima50Anos', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'faixa_etaria_2024'
 
     def __str__(self):

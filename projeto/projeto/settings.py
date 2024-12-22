@@ -127,3 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DJANGO_TABLES2 = {
     "TEMPLATE": "django_tables2/bootstrap4.html",  # Template para Bootstrap 4
 }
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'visu' / 'static',
+]

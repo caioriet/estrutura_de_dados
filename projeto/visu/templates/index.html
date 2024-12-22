@@ -1,36 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Menu Principal</title>
-    <style>
-        body {
-            font-family: sans-serif;
-        }
-        .model-section {
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .model-section h2 {
-            margin-top: 0;
-        }
-        .model-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .model-section ul li {
-            display: inline-block;
-            margin-right: 10px;
-        }
-        .model-section ul li a {
-            text-decoration: none;
-            padding: 5px 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <h1>Menu Principal</h1>
@@ -39,11 +15,19 @@
     <div class="model-section">
         <h2>{{ model_title }}</h2>
         <ul>
-            <li><a href="{% url 'list' model_name=model_name %}">Visualizar</a></li>
-            <li><a href="{% url 'create' model_name=model_name %}">Criar</a></li>
+            <a class="btn btn-primary mb-3"  href="{% url 'list' model_name=model_name %}">Visualizar</a>
+            <a class="btn btn-primary mb-3"  href="{% url 'create' model_name=model_name %}">Criar</a>
         </ul>
     </div>
     {% endfor %}
 
+    <div class="model-section">
+        <h2>Dashboard</h2>
+        <ul>
+            <a class="btn btn-primary mb-3"  href="{% url 'dashboard' %}" class="button">Visualizar</a>
+        </ul>
+    </div>
 </body>
+
 </html>
+{% endblock %}
